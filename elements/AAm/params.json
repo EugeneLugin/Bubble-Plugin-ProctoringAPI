@@ -14,27 +14,31 @@
         "ABe": {
             "caption": "finished",
             "name": "finished"
+        },
+        "ACR": {
+            "caption": "newMessage",
+            "name": "newMessage"
+        },
+        "ACS": {
+            "caption": "proctorMedia",
+            "name": "proctorMedia"
         }
     },
     "fields": {
-        "AAn": {
-            "caption": "client",
-            "editor": "DynamicValue",
-            "name": "client",
-            "rank": 0,
-            "value": "text"
-        },
-        "AAo": {
-            "caption": "exam",
-            "editor": "DynamicValue",
-            "name": "exam",
-            "rank": 1,
-            "value": "text"
-        }
     },
     "icon": "ion-android-notifications-none",
     "property_applications": {
         "MinWidth": true,
         "resizable": true
+    },
+    "states": {
+        "ACC": {
+            "caption": "proctor_media",
+            "initialization_code": {
+                "fn": "function(properties, context) {\n\n\n\n}"
+            },
+            "name": "proctor_media",
+            "value": "text"
+        }
     }
 }

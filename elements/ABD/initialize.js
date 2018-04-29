@@ -120,8 +120,7 @@ function(instance, context) {
   }
 
   function publishMyStream(pc, localStream) {
-    if (localStream) {
-      console.log('added local stream');
+    if (localStream) {      
       return pc.addStream(localStream);
     } else {
       return null;
@@ -232,7 +231,7 @@ function(instance, context) {
     connection.ws.binaryType = 'arraybuffer';
 
     connection.ws.onopen = function () {
-      console.log("wowzaConnector.ws.onopen");
+      console.log("wowzaConnector.ws.onopen", app, streamName);
       if(opened) opened();
     };
 
@@ -321,6 +320,7 @@ function(instance, context) {
   }
 
   function init(fromId, type) {
+    
     instance.data.controller.stop();
 
     instance.data.controller.fromId = fromId;
@@ -336,6 +336,7 @@ function(instance, context) {
         instance.data.myStream = stream;
 
         var token = '' + instance.data.controller.fromId + '_' + Date.now() + (type == 'screen_out' ? '_s' : '');
+        console.log('t',type,token);
 
         instance.data.wowzaConnection.connect('wss://'+context.keys.wowza_host+'/webrtc-session.json',
           (type == 'screen_out' ? 'sharing' : 'live'),
@@ -353,12 +354,12 @@ function(instance, context) {
             );
             instance.data.webrtcCore.publishMyStream(instance.data.wowzaConnection.peer, stream);
             instance.publishState("recordName", token);
-            instance.triggerEvent("newRecord");
+            instance.triggerEvent("newRecord");                      
           }
         );
       }, instance.data.constraints);
     } else {
-      var token = '' + instance.data.controller.fromId;
+      var token = '' + instance.data.controller.fromId;// + (type == 'screen_in' ? '' : '_aac');
 
       instance.data.wowzaConnection.connect('wss://'+context.keys.wowza_host+'/webrtc-session.json',
         (type == 'screen_in' ? 'sharing' : 'live'),

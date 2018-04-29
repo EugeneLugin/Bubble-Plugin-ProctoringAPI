@@ -1,17 +1,17 @@
 function(instance, properties, context) {
-  	instance.data.heightmyvideo = instance.canvas[0].offsetHeight;
-    instance.data.widthmyvideo = instance.canvas[0].offsetWidth;
-
-    if(instance.data.widthmyvideo) {
-      if (!instance.data.videoLeft) {
-        instance.data.videoLeft = $('<video></video>');
-        instance.data.videoLeft.attr('autoplay', true);        
-        instance.data.videoLeft.width(instance.data.widthmyvideo + 'px');
-        instance.data.videoLeft.height(instance.data.heightmyvideo + 'px');
-        instance.canvas.append(instance.data.videoLeft);
-      } 
+  /*instance.data.heightmyvideo = instance.canvas[0].offsetHeight;
+  instance.data.widthmyvideo = instance.canvas[0].offsetWidth;
+  
+  if(instance.data.widthmyvideo) {
+    if (!instance.data.videoLeft) {
+      instance.data.videoLeft = $('<video></video>');
+      instance.data.videoLeft.attr('autoplay', true);        
+      instance.data.videoLeft.width(instance.data.widthmyvideo + 'px');
+      instance.data.videoLeft.height(instance.data.heightmyvideo + 'px');    
       instance.data.videoLeft.attr('controls', properties.type == 'screen_in' || properties.type == 'media_in');      
-    }  
+      instance.canvas.append(instance.data.videoLeft);      
+    }     
+  }    
   
   	if(properties.type != 'media_out' && properties.type != 'screen_out'
       && properties.client && properties.exam && properties.proctor) {  
@@ -20,7 +20,7 @@ function(instance, properties, context) {
 
       body = 'client='+properties.client;    
       body += '&exam='+properties.exam;
-      body += '&proctor='+properties.proctor;
+      body += '&proctor='+properties.proctor;    
 
       xhr.open("POST", 'https://'+context.keys.api_host+'/timeline/streams', true);
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -49,10 +49,12 @@ function(instance, properties, context) {
             if((received.content=='media' && properties.type == 'media_in') || 
                (received.content=='screen' && properties.type == 'screen_in') ) {
               if (received.user == properties.id) {
-              	instance.data.controller.init(received.extra, properties.type);
+              	setTimeout(function() {
+                  instance.data.controller.init(received.extra, properties.type);
+                }, 5000);
               }
             }
           }
       });	
-    }
+    }*/
 }
