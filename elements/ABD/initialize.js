@@ -304,6 +304,9 @@ function(instance, context) {
   }
 
   function stop() {
+    if(instance.data.wowzaConnection.connection && instance.data.wowzaConnection.connection.ws) {
+      instance.data.wowzaConnection.connection.ws.close();
+    }
     if (instance.data.videoLeft && instance.data.videoLeft[0].srcObject) {
       var tracks = instance.data.videoLeft[0].srcObject.getTracks();
       for (var tr in tracks) if (tracks[tr]) tracks[tr].stop();

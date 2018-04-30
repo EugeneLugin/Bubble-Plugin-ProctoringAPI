@@ -22,9 +22,11 @@
         "ACS": {
             "caption": "proctorMedia",
             "name": "proctorMedia"
+        },
+        "ACX": {
+            "caption": "noExtension",
+            "name": "noExtension"
         }
-    },
-    "fields": {
     },
     "icon": "ion-android-notifications-none",
     "property_applications": {
